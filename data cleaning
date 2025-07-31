@@ -1,0 +1,100 @@
+Project 1 data cleaning and preparation in data analyst with excel
+Misi 
+
+Selesai membaca materi Data Cleaning, aku istirahat sejenak sebelum mulai mengecek tugas dari Andra. Sedikit peregangan dan berselancar di sosial media, sebelum kembali menyelam bersama Excel. Setelah lima belas menit istirahat aku mulai bergerilya menghadapi beberapa email yang masuk. Email dari Andra rupanya sudah muncul di daftar teratas email masuk hari ini. Dalam email itu, Andra juga membagikan sebuah lembar Excel padaku. 
+ 
+Andra menjelaskan bahwa ternyata Tim Produksi membuat revisi data master produk. Ia memintaku untuk merapikan tabel tersebut sebelum didistribusikan. Andra juga mencantumkan poin-poin yang harus aku perhatikan. 
+“Hai, Sun, dalam proses pengerjaan tugas kali ini. Ada beberapa standar untuk tabel yang harus disajikan ya: 
+1) Tidak ada harga barang yang lebih dari 1 juta dan kurang dari 50 ribu, 
+2) Kode digit terdiri dari 8 karakter, 
+3) Penulisan huruf kapital harus sesuai, 
+4) Tidak ada kolom yang blank, dan 
+5) Tidak ada baris yang duplikat.” begitu bunyi pesan dari Andra. 
+
+
+No.	Kode Produk Final	Kategori	Nama Produk	Harga Awal
+1	BWH-0008	     bAWAHan	Legging	 195.000 
+2	GUN-0012	GAUN	     JUMPSUIT	 267.000 
+3	ATS-00004		BOXER	
+4	GUN-0013	gaun	MAXI Dress	 7.050.000 
+5	BWH-0006	Bawahan	cELANA jeans	 402.000 
+6	BWH-0010	Bawahan	Hot   PANTS	 153.000 
+7	GUN-0013	  Gaun	Maxi DRESS	 705.000 
+8	AKS-0016	Aksesoris	KAuS Kaki	 210.000 
+9	OLR-0024	          PAKAIAN            olahraga	KAOS olahraga	 132.000 
+10	OLR-0025	Pakaian         Olahraga	CELAna       Training	 141.000 
+11	ATS-0001	    Atasan	T-shirt	 165.000 
+12	AKS-0019	aksesoris	      ikat  pinggang	 75.000 
+13	AKS-0018	aksesoris	Topi	 105.000 
+14	AKS-00171	Aksesoris	Kalung	
+15	ATS-0003	ATAsan	       KEMeja	 249.000 
+16	AKS-0018	       aksesORIS	TOPI	 105.000 
+17	AKS-0020	Aksesoris	kacaMata	 246.000 
+18			OVERALL	 1.250.000 
+19	OLR-0021	       pakaian          OLAHRAGA	LEGGING    OLAHRAGA	 195.000 
+20	AKS-00172	Aksesoris	SYAL	 135.000 
+21	ATS-0003	Atasan	KeMEJA	 249.000 
+22	AKS-0017	AKSESORIS	       syal	 135.000 
+23	BWH-0009	      BAWAHAN	CELANA       panjang	 168.000 
+24		aksesoris    		 105.000 
+25	BWH-00080	bAWAHan		 450.000 
+26	OLR-0023	        pakaian OLAHRAGA	Celana Pendek	 135.000 
+27	BWH-0006	BAWAHan	CELANA JEANS	 402.000 
+28	OLR-0025	       PAKAIAN olahraga	CELAna TRAINING	 35.000 
+29	ATS-0005	ATASAN	JAKET	 801.000 
+30	OLR-0021	PAKAIAN olahraga	   legging      OLAHRAGA	 195.000 
+31	OLR-0022	Pakaian Olahraga	Jersey	 231.000 
+32	ATS-0002	AtASan	      Blus	 192.000 
+33	ATS-0004	    atasan	SWEATER	 231.000 
+34	GUN-0015	GauN	OVERALL	 234.000 
+35	OLR-0022			 350.000 
+36	GUN-0014	gaun	Kaftan	 276.000 
+37	ATS-0005	atasaN	Jaket	 801.000 
+38	BWH-0007	Bawahan	Rok	 288.000 
+39	GUN-0011	Gaun	Dress	 597.000 
+40	ATS-00015		T-shirt	 165.000 
+
+step by step:
+1. setelah mendapatkan data dan mengatur ulang di excel dalam bentuk .xlsx
+  atur agar kolom Kategori dan Nama Produk tidak mengandung spasi sebelum maupun setelahnya serta menggunakan proper case. 
+  menghapus spasi gunakan function excel =trim(E2:E35) di kolom baru sebagai kolom bantu. 
+  untuk mengubah karakter menjadi proper case gunakan function excel =proper(E2:E35)
+  setelah itu copy dan paste special di kolom asal (Kategori dan Nama Produk)
+2. delete baris yang memiliki cell kosong, termasuk yang memiliki karakter kode produksi lebih dari 8
+  gunakan =len(B4:B43), sehingga diketahui sel-sel yang memiliki karakter kode produksi > 8.
+3. sesuaikan harga awal dengan perintah yang diberikan.
+  =if((E4:E37)>=1000000;(E4:E37)/10;if((E4:E37)<=50000;(E4:E37)*10);E4:E37)) 
+  sehingga data pada kolom E (harga awal) yang memuat >= 1.000.000 akan dibagi 10 alias 1 angka 0 dikurangi. sebaliknya yang memiliki nilai <= 50.000 akan dikalikan 10 alias ditambah 1 angka 0
+  kemudian jika tidak memenuhi kedua case yang dituliskan akan mencetak angka yang sudah ada.
+4. kemudian, untuk mengurutkan kode produksi, gunakan =right(A4:A37;2)*1, maka akan muncul dua angka dari kanan. kemudian letakkan di samping kode produksi.
+  di sini dapat juga untuk menggantikan kolom nomor yang sudah ada, karena ada beberapa row yang dihapus, maka kolom nomor menjadi acak.
+5. blok tabel (ctrl+A) kemudian custom sort berdasarkan kolom nomor/kolom B jika poin nomor 4 tidak digunakan untuk menggantikan kolom nomor. 
+6. Terakhir remove duplicates dengan menggunakan tab data. centang nomor dan kode produksi sehingga akan menghapus baris yang mempunyai nomor dan kode produksi yang sama.
+    hasil akhirnya yaitu berupa 25 kode produksi unik.
+
+No	Kode Produk	Kategori	Nama Produk	Harga Awal
+1	ATS-0001	Atasan	T-Shirt	165.000
+2	ATS-0002	Atasan	Blus	192.000
+3	ATS-0003	Atasan	Kemeja	249.000
+4	ATS-0004	Atasan	Sweater	231.000
+5	ATS-0005	Atasan	Jaket	801.000
+6	BWH-0006	Bawahan	Celana Jeans	402.000
+7	BWH-0007	Bawahan	Rok	288.000
+8	BWH-0008	Bawahan	Legging	195.000
+9	BWH-0009	Bawahan	Celana Panjang	168.000
+10	BWH-0010	Bawahan	Hot Pants	153.000
+11	GUN-0011	Gaun	Dress	597.000
+12	GUN-0012	Gaun	Jumpsuit	267.000
+13	GUN-0013	Gaun	Maxi Dress	705.000
+14	GUN-0014	Gaun	Kaftan	276.000
+15	GUN-0015	Gaun	Overall	234.000
+16	AKS-0016	Aksesoris	Kaus Kaki	210.000
+17	AKS-0017	Aksesoris	Syal	135.000
+18	AKS-0018	Aksesoris	Topi	105.000
+19	AKS-0019	Aksesoris	Ikat Pinggang	75.000
+20	AKS-0020	Aksesoris	Kacamata	246.000
+21	OLR-0021	Pakaian Olahraga	Legging Olahraga	195.000
+22	OLR-0022	Pakaian Olahraga	Jersey	231.000
+23	OLR-0023	Pakaian Olahraga	Celana Pendek	135.000
+24	OLR-0024	Pakaian Olahraga	Kaos Olahraga	132.000
+25	OLR-0025	Pakaian Olahraga	Celana Training	141.000
