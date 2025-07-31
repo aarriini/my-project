@@ -1,0 +1,35 @@
+project 2
+Walau aku dan Aksara terpisah oleh jarak, tidak menutup kemungkinan Aksara membimbingku dengan penuh rasa tanggung jawab. Agar mengerjakan misi kali ini tetap berjalan lancar, dia memberikanku tugas melalui live Zoom meeting. Dia mempresentasikan arahan tentang misi kali ini dalam slide presentasi yang menarik dan tidak monoton. Misi pertama kali ini yaitu aku harus memahami apa itu tipe data dengan maksimal, karena tipe data akan menentukan operasi apa saja yang berlaku. Tipe data dalam Python adalah atribut yang digunakan untuk menyimpan nilai atau data dalam variabel. Setiap nilai atau data yang disimpan dalam variabel harus memiliki tipe data yang sesuai. Selanjutnya setelah memahami tipe data, terdapat misi untuk menyusun script terkait string function and methods untuk menentukan operasi apa yang sesuai untuk mengolah data selanjutnya.
+
+Misi:
+
+Untuk membantuku memahami lebih lanjut mengenai penggunaan tipe data dan cara menyimpan data ke dalam variabel, Aksara memintaku untuk:
+
+1. Memisahkan nama depan dan nama belakang dari customer yang ada pada kolom Customer_Name yang dipisahkan dengan spasi.
+
+2. Setelah itu, nama depan dari customer disimpan ke dalam variabel bersama First_Name dan nama belakang disimpan ke dalam variabel bernama Last_Name.
+
+Instruksi Pengerjaan:
+
+Customer_Name
+Claire Gute
+Claire Gute
+Darrin Van Huff
+Sean O'Donnell
+Sean O'Donnell
+
+Perhatikan pada kolom Customer_Name bahwa nama depan (first_name) dan nama belakang (last_name) dipisahkan dengan spasi. Pisahkan Customer Name menjadi dua komponen yaitu First_Name dan Last_Name
+
+import pandas as pd
+
+# load dataset
+dataset = 'https://storage.googleapis.com/dqlab-dataset/SuperStore.csv'
+df = pd.read_csv(dataset);
+
+# Pisahkan Customer Name menjadi dua komponen yaitu First_Name dan Last_Name
+name = df['Customer_Name'].str.split(" ", n=1, expand=True)
+df['First_Name'] = name[0]
+df['Last_Name'] = name[1]
+
+# tampilkan 5 baris pertama
+print(df.head())
